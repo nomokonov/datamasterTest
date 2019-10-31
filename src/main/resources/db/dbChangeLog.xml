@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Vladimir Nomokonov" id="1">
+        <comment>
+            Создание базы данных и таблиц.
+        </comment>
+        <sql>
+            CREATE TABLE survey
+            (
+            survey_id SERIAL PRIMARY KEY,
+            name varchar,
+            start_date date,
+            expiry_date date,
+            enable boolean
+            );
+
+            CREATE TABLE question
+            (
+            question_id SERIAL PRIMARY KEY,
+            position_order integer,
+            question_text varchar,
+            survey_id bigint,
+            FOREIGN KEY (survey_id) REFERENCES survey (survey_id)
+            );
+        </sql>
+        <rollback>
+            DROP TABLE question;
+            DROP TABLE survey;
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
