@@ -1,4 +1,11 @@
-Для запуска приложения выполнитькоманды:
+Требования к системе:
+JDK
+PostgreSQL
+Maven
+Git
+
+
+Для запуска приложения выполнить команды:
 
 
 git clone https://github.com/nomokonov/datamasterTest.git
