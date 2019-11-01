@@ -54,7 +54,8 @@ public class SurveyServiceImpl implements SurveyService {
 
     @Override
     public Survey add(Survey survey) {
-        return surveyRepository.save(survey);
+        survey.getQuestion().setSurvey(survey);
+        return surveyRepository.saveAndFlush(survey);
     }
 
     @Override
@@ -71,7 +72,8 @@ public class SurveyServiceImpl implements SurveyService {
     @Override
     public Survey update(Survey survey) {
         if (surveyRepository.existsById(survey.getId())) {
-            return surveyRepository.save(survey);
+            survey.getQuestion().setSurvey(survey);
+            return surveyRepository.saveAndFlush(survey);
         } else {
             return null;
         }

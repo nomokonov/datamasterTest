@@ -27,6 +27,9 @@ public class Survey {
     @Column(name="enable")
     private boolean enable;
 
+    @OneToOne(mappedBy = "survey", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    private Question question;
+
     public Survey() {
     }
 
@@ -68,5 +71,13 @@ public class Survey {
 
     public void setEnable(boolean enable) {
         this.enable = enable;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 }

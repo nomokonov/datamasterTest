@@ -1,5 +1,7 @@
 package com.datamaster.test.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,7 +19,9 @@ public class Question {
     @Column(name="position_order")
     private Integer positionOrder;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
+    @JoinColumn(name="survey_id")
+    @JsonIgnore
     private Survey survey;
 
     public Question() {
